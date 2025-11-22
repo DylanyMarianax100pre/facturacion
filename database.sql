@@ -76,3 +76,20 @@ CREATE TABLE   t_factura(
 )ENGINE=InnoDb;
 
 
+SELECT  fac.id_factura,
+		fac.fecha,
+		fac.id_usuario,
+		usu.nombre,
+        usu.apellido,
+        fac.id_cliente,
+        cli.nombre_cliente,
+        cli.dirreccion,
+        fac.id_producto,
+        prod.producto,
+        fac.cantidad,
+		fac.valor_unitario,
+        fac.cantidad * fac.valor_unitario AS total
+FROM t_factura fac
+INNER JOIN t_usuario usu ON usu.id_usuario = fac.id_usuario
+INNER JOIN t_cliente cli ON cli.id_cliente = fac.id_cliente
+INNER JOIN t_producto prod ON prod.id_producto = prod.id_producto
